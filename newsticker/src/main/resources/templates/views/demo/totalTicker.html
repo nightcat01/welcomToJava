@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <script th:src="@{/js/jquery-3.4.1/jquery-3.4.1.js}"></script>
+    <script th:src="@{/js/newsticker/jquery.newsticker.js}"></script>
+    <script th:src="@{/js/simpleTicker/jquery.simpleTicker.js}"></script>
+    <link rel="stylesheet" th:href="@{/css/newsticker/jquery.newsticker.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/simpleTicker/jquery.simpleTicker.css}" />
+    <script type="text/javascript">
+        $( document ).ready( function () {
+            // 	$('#demo').marquee();
+            init();
+            $('.ui-newsticker').newsticker();
+        })
+
+
+        init = function () {
+            $.fn.newsticker = function(opts) {
+                // default configuration
+                var config = $.extend({}, {
+                    height: 119,
+                    speed: 800,
+                    start: 0,
+                    interval: 10000 // 속도
+                }, opts);
+                // main function
+                function init(obj) {
+                    var dNewsticker = obj,
+                        dFrame = dNewsticker.find('.ui-newsticker-list'),
+                        dItem = dFrame.find('.ui-newsticker-item'),
+                        dNext,
+                        stop = false;
+                    var dFirst = dItem.eq(0);
+                    dFirst.addClass('current');
+
+                    var cnt = 0 ;
+                    setInterval(function() {
+                        if (!stop) {
+                            var dCurrent = dFrame.find('.current');
+                            dFrame.animate({
+                                top: '-=' + config.height + 'px'
+                            }, config.speed, function() {
+                                $('.ticker li').css('opacity', 0);
+                                dNext = dFrame.find('.current').next();
+                                dNext.addClass('current');
+                                dCurrent.removeClass('current');
+                                dCurrent.clone().appendTo(dFrame);
+                                dCurrent.remove();
+                                dFrame.css('top', config.start + 'px');
+
+                                // .current가 붙은 newsticker를 찾음.
+                                // 위에서 current가 변경되는 작업이 있기 때문에 새로 current 클래스가 붙은 걸 찾아야 정상적으로 동작
+                                var ticker = dFrame.find('.current').find('.word4');
+
+                                $.simpleTicker(ticker,{'effectType':'slide'});
+                                /*ticker.find('ul li').each(function() {
+                                    if(!$(this).hasClass('tickerHook')) {
+                                        $(this).css('opacity', '0');
+                                    }
+                                });*/
+                                if ( cnt == 20) cnt = 0;
+                                /*if ( rm ) { // callback
+                                    var flag = CommonUtil.evenOrOdd(cnt);
+                                    if (flag == 'Odd') {
+                                        document.querySelector('div.ui-newsticker.one .ui-newsticker-item.second > div.word1').innerText = '변경' + cnt;
+                                        document.querySelector('div.ui-newsticker.two .ui-newsticker-item.second > div.word1').innerText = '변경' + cnt;
+                                        document.querySelector('div.ui-newsticker.three .ui-newsticker-item.second > div.word1').innerText = '변경' + cnt;
+                                        document.querySelector('div.ui-newsticker.four .ui-newsticker-item.second > div.word1').innerText = '변경' + cnt;
+                                        document.querySelector('div.ui-newsticker.five .ui-newsticker-item.second > div.word1').innerText = '변경' + cnt;
+                                    } else {
+                                        document.querySelector('div.ui-newsticker.one .ui-newsticker-item.first > div.word1').innerText = '변경' + cnt;
+                                        document.querySelector('div.ui-newsticker.two .ui-newsticker-item.first > div.word1').innerText = '변경' + cnt;
+                                        document.querySelector('div.ui-newsticker.three .ui-newsticker-item.first > div.word1').innerText = '변경' + cnt;
+                                        document.querySelector('div.ui-newsticker.four .ui-newsticker-item.first > div.word1').innerText = '변경' + cnt;
+                                        document.querySelector('div.ui-newsticker.five .ui-newsticker-item.first > div.word1').innerText = '변경' + cnt;
+                                    }
+                                    cnt++;
+                                }*/
+                            });
+                        }
+                    }, config.interval);
+                }
+                // initialize every element
+                this.each(function() {
+                    init($(this));
+                    $.simpleTicker($(this).find('.current').find('.word4'),{'effectType':'slide'});
+                });
+                return this;
+            };
+        }
+    </script>
+    <style>
+        .ui-newsticker-list {
+            margin : 0px;
+        }
+    </style>
+    <title>Title</title>
+</head>
+<body>
+<div style="width: 100%; height: 100%; overflow:hidden; text-align: center; ">
+    <div class="two_img">
+        <div class="ui-newsticker one" id="one">
+            <ul class="ui-newsticker-list">
+                <li class="ui-newsticker-item first">
+                    <div class="word1">재주쓰시스템</div> <div class="word2 red"><span class="arr_up"></span>1,234.56</div> <div class="word3 red"><span class="arr_up"></span>1.29</div>
+                    <div id="test" class="word4 ticker">
+                        <ul>
+                            <li>one-first-1</li>
+                            <li>one-first-2</li>
+                            <li>one-first-3</li>
+                            <li>one-first-4</li>
+                            <li>one-first-5</li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="ui-newsticker-item second">
+                    <div class="word1">투썸플레이스</div> <div class="word2 red"><span class="arr_up"></span>22.22</div> <div class="word3 red"><span class="arr_up"></span>12.29</div>
+                    <div class="word4 ticker">
+                        <ul>
+                            <li>one-second-1</li>
+                            <li>one-second-2</li>
+                            <li>one-second-3</li>
+                            <li>one-second-4</li>
+                            <li>one-second-5</li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <br>
+        <div class="ui-newsticker two">
+            <ul class="ui-newsticker-list">
+                <li class="ui-newsticker-item first">
+                    <div class="word1 aa">탐앤탐스</div> <div class="word2 blue"><span class="arr_down"></span>2.22</div> <div class="word3 blue"><span class="arr_down"></span>0.29</div>
+                    <div class="word4 ticker">
+                        <ul>
+                            <li>two-first-1</li>
+                            <li>two-first-2</li>
+                            <li>two-first-3</li>
+                            <li>two-first-4</li>
+                            <li>two-first-5</li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="ui-newsticker-item second">
+                    <div class="word1 bb">스타벅스</div> <div class="word2 red"><span class="arr_up"></span>22.22</div> <div class="word3 red"><span class="arr_up"></span>22.29</div>
+                    <div class="word4 ticker">
+                        <ul>
+                            <li>two-second-1</li>
+                            <li>two-second-2</li>
+                            <li>two-second-3</li>
+                            <li>two-second-4</li>
+                            <li>two-second-5</li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <br>
+        <div class="ui-newsticker three">
+            <ul class="ui-newsticker-list">
+                <li class="ui-newsticker-item first">
+                    <div class="word1">이디야</div> <div class="word2 blue"><span class="arr_down"></span>2.22</div> <div class="word3 blue"><span class="arr_down"></span>0.29</div>
+                    <div class="word4 ticker">
+                        <ul>
+                            <li>three-first-1</li>
+                            <li>three-first-2</li>
+                            <li>three-first-3</li>
+                            <li>three-first-4</li>
+                            <li>three-first-5</li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="ui-newsticker-item second">
+                    <div class="word1">할리스커피</div> <div class="word2 red"><span class="arr_up"></span>22.22</div> <div class="word3 red"><span class="arr_up"></span>22.29</div>
+                    <div class="word4 ticker">
+                        <ul>
+                            <li>three-second-1</li>
+                            <li>three-second-2</li>
+                            <li>three-second-3</li>
+                            <li>three-second-4</li>
+                            <li>three-second-5</li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <br>
+        <div class="ui-newsticker four">
+            <ul class="ui-newsticker-list">
+                <li class="ui-newsticker-item first">
+                    <div class="word1">이디야</div> <div class="word2 blue"><span class="arr_down"></span>2.22</div> <div class="word3 blue"><span class="arr_down"></span>0.29</div>
+                    <div class="word4 ticker">
+                        <ul>
+                            <li>four-first-1</li>
+                            <li>four-first-2</li>
+                            <li>four-first-3</li>
+                            <li>four-first-4</li>
+                            <li>four-first-5</li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="ui-newsticker-item second">
+                    <div class="word1">할리스커피</div> <div class="word2 red"><span class="arr_up"></span>22.22</div> <div class="word3 red"><span class="arr_up"></span>22.29</div>
+                    <div class="word4 ticker">
+                        <ul>
+                            <li>four-second-1</li>
+                            <li>four-second-2</li>
+                            <li>four-second-3</li>
+                            <li>four-second-4</li>
+                            <li>four-second-5</li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <br>
+        <div class="ui-newsticker five">
+            <ul class="ui-newsticker-list">
+                <li class="ui-newsticker-item first">
+                    <div class="word1">이디야</div> <div class="word2 blue"><span class="arr_down"></span>2.22</div> <div class="word3 blue"><span class="arr_down"></span>0.29</div>
+                    <div class="word4 ticker">
+                        <ul>
+                            <li>five-first-1</li>
+                            <li>five-first-2</li>
+                            <li>five-first-3</li>
+                            <li>five-first-4</li>
+                            <li>five-first-5</li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="ui-newsticker-item second">
+                    <div class="word1">할리스커피</div> <div class="word2 red"><span class="arr_up"></span>22.22</div> <div class="word3 red"><span class="arr_up"></span>22.29</div>
+                    <div class="word4 ticker">
+                        <ul>
+                            <li>five-second-1</li>
+                            <li>five-second-2</li>
+                            <li>five-second-3</li>
+                            <li>five-second-4</li>
+                            <li>five-second-5</li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>

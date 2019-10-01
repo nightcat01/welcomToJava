@@ -1,0 +1,6 @@
+spring:
+  thymeleaf:
+    prefix: classpath:/templates/views/
+  devtools:
+    livereload:
+      enabled: true
