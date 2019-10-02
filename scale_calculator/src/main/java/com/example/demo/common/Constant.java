@@ -12,4 +12,12 @@ public class Constant {
         public static String[] MI_FA = {"E", "F"};
         public static String[] SI_DO = {"B", "C"};
     }
+
+    public static class INTERVAL {
+        public static String PERFECT = "Perfect Interval";
+        public static String MAJOR = "Major Interval";
+        public static String MINOR = "Minor Interval";
+        public static String AUGUMETED = "Augumented Interval";
+        public static String DIMINISHED = "Diminished Interval";
+    }
 }

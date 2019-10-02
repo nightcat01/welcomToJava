@@ -43,6 +43,15 @@ public class ScaleCalculatorTests {
         Assert.assertEquals(1, result);
     }
 
+    @Test
+    public void checkIntervalTest() throws Exception {
+        String result = checkInterval("B", "D");
+        System.out.println("resutl : " + result);
+        Assert.assertEquals(calculatInterval("B", "D") + " " + Constant.INTERVAL.MINOR, checkInterval("B", "D"));
+        Assert.assertEquals(calculatInterval("C", "D") + " " + Constant.INTERVAL.MAJOR, checkInterval("C", "D"));
+        Assert.assertEquals(calculatInterval("C", "F") + " " + Constant.INTERVAL.PERFECT, checkInterval("C", "F"));
+    }
+
     // 음계 차이 확인
     // rootScalerhk calScale의 차이를 확인
     public static int calculatInterval(String rootScale, String calScale) throws Exception {
@@ -129,11 +138,64 @@ public class ScaleCalculatorTests {
         return result;
     }
 
-    public static String checkInterval(String rootScale, String calScale) {
+    // 도수 확인
+    public static String checkInterval(String rootScale, String calScale) throws Exception {
         String result = "";
 
+        String[] arr = selectScale(rootScale, calScale);
+        int interval = calculatInterval(rootScale, calScale);
 
-
-        return result;
+        if(arr != null && arr.length > 0) {
+            int semitoneCnt = checkSemitone(arr);
+            System.out.println("interval : " + interval);
+            switch (interval) {
+                case 2 :
+                    if(semitoneCnt > 0) {
+                        result = Constant.INTERVAL.MINOR;
+                    } else {
+                        result = Constant.INTERVAL.MAJOR;
+                    }
+                    break;
+                case 3 :
+                    if(semitoneCnt > 0) {
+                        result = Constant.INTERVAL.MINOR;
+                    } else {
+                        result = Constant.INTERVAL.MAJOR;
+                    }
+                    break;
+                case 4 :
+                    if(semitoneCnt > 0) {
+                        result = Constant.INTERVAL.PERFECT;
+                    } else {
+                        result = Constant.INTERVAL.AUGUMETED;
+                    }
+                    break;
+                case 5 :
+                    if(semitoneCnt > 1) {
+                        result = Constant.INTERVAL.PERFECT;
+                    } else if(semitoneCnt == 2) {
+                        result = Constant.INTERVAL.DIMINISHED;
+                    }
+                    break;
+                case 6 :
+                    if(semitoneCnt > 1) {
+                        result = Constant.INTERVAL.MAJOR;
+                    } else if(semitoneCnt == 2) {
+                        result = Constant.INTERVAL.MINOR;
+                    }
+                    break;
+                case 7 :
+                    if(semitoneCnt > 1) {
+                        result = Constant.INTERVAL.MAJOR;
+                    } else if(semitoneCnt == 2) {
+                        result = Constant.INTERVAL.MINOR;
+                    }
+                    break;
+                case 8 :
+                    result = Constant.INTERVAL.PERFECT;
+                    break;
+            }
+        }
+        return interval + " " + result;
     }
 }
