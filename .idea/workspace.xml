@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d35f9709-deed-4a38-b6ce-d00895de8fda" name="Default" comment="" />
+    <list default="true" id="d35f9709-deed-4a38-b6ce-d00895de8fda" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactive-study/src/main/java/com/nightcat/reactive/reactivesample/controller/SampleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/reactive-study/src/main/java/com/nightcat/reactive/reactivesample/controller/SampleController.java" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -34,8 +37,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -47,7 +48,9 @@
           <select />
         </subPane>
       </pane>
+      <pane id="AndroidView" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -130,12 +133,13 @@
       <workItem from="1543896884381" duration="24000" />
       <workItem from="1564561623401" duration="662000" />
       <workItem from="1564562305402" duration="46000" />
-      <workItem from="1579135459167" duration="1674000" />
+      <workItem from="1579135459167" duration="1976000" />
+      <workItem from="1585787175024" duration="114000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2504000" />
+    <option name="totallyTimeSpent" value="2920000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1721" height="1041" extended-state="6" />
@@ -154,22 +158,29 @@
       <window_info anchor="bottom" id="RNConsole" order="7" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24956064" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2528597" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info id="Learn" order="3" />
-      <window_info anchor="right" id="SciView" />
+      <window_info anchor="right" id="SciView" order="10" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
       <window_info anchor="right" id="Theme Preview" order="3" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="SVN Repositories" order="17" weight="0.3297414" />
+      <window_info anchor="bottom" id="Java Enterprise" order="13" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Problems" order="12" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.3297414" />
+      <window_info anchor="bottom" id="Application Servers" order="7" weight="0.3297414" />
+      <window_info anchor="bottom" id="Spring" order="8" />
       <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info id="Web" order="4" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">

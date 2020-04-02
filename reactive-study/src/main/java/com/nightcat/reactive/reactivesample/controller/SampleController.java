@@ -17,6 +17,7 @@ public class SampleController {
         return "/hello";
     }
 
+
     @GetMapping(value = "title")
     public String title(final Model model) {
         model.addAttribute("title", Flux.just("세키로", "다크소울", "블러드본"));
