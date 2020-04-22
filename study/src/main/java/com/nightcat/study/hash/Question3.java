@@ -1,8 +1,6 @@
 package com.nightcat.study.hash;
 
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Iterator;
 
 /**
  * Created by Admin
