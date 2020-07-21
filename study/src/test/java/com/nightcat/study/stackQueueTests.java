@@ -26,6 +26,8 @@ class stackQueueTests {
     void question2(){
         Question2 q = new Question2();
         Assert.assertEquals(q.solution(q.bridge_length1, q.weight1, q.truck_weights1), q.answer1);
+        Assert.assertEquals(q.solution(q.bridge_length2, q.weight2, q.truck_weights2), q.answer2);
+        Assert.assertEquals(q.solution(q.bridge_length3, q.weight3, q.truck_weights3), q.answer3);
     }
 
 

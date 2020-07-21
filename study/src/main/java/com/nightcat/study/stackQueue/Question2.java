@@ -48,7 +48,7 @@ public class Question2 {
     final public int bridge_length3 = 100;
 
     final public int weight1 = 10;
-    final public int weight2 = 100;
+    final public int weight2 = 10;
     final public int weight3 = 100;
 
     final public int[] truck_weights1 = {7,4,5,6};
@@ -70,18 +70,54 @@ public class Question2 {
         // 무게가 초과하지 않는 경우 차는 동시에 다리 위에 존재할 수 있다.
         // FIFO 구성으로 queue를 이용하여 풀이
 
-        // queue를 다리로 인식하여 최대 크기를 구성
-        Queue<Integer> queue = new LinkedList<>();
-        int index = 0;
-        while(index < truck_weights.length) {
+        Queue<Truck> bridge = new LinkedList<>();
 
-            if(queue.isEmpty()) {
-                queue.offer(truck_weights[index]);
-                answer++;
+        int index = 0; // 트럭 대기열
+        int totWeight = 0; // 다리에 올라가있는 총 무게
+        int length = truck_weights.length;
+        boolean isProcess = true;
+        int truckWeight = 0;
+        while(isProcess) { // 대기열이 다 사라질 때까지
+            Truck delTruck = null;
+            // 다리 위에 있는 트럭들이 한칸씩 전진
+            for(Truck t : bridge) {
+                int inBridgeTruckTime = t.getTime();
+                System.out.println(t.getWeight() + "    " + inBridgeTruckTime);
+                // 다리길이보다 더 나갔을 경우 다리를 빠져나갔다고하여 제거
+                if(bridge_length < ++inBridgeTruckTime) {
+                    System.out.println(t.getWeight() + "    " + inBridgeTruckTime);
+                    totWeight -= t.getWeight();
+                    delTruck = t;
+                } else { // 아닐 경우 전진
+//                    System.out.println(t.getWeight() + "    " + inBridgeTruckTime);
+                    t.setTime(inBridgeTruckTime);
+                }
             }
 
+            // 삭제할 트럭 정보 삭제
+            ((LinkedList<Truck>) bridge).remove(delTruck);
 
+            if(index < length) {
+                truckWeight = truck_weights[index];
 
+                // 현재 트럭 무게 + 다리 위 트럭 무게 비교
+                if (weight >= totWeight + truckWeight) {
+                    Truck truck = new Truck();
+                    truck.setWeight(truckWeight);
+                    truck.setTime(1);
+                    bridge.offer(truck);
+                    totWeight += truckWeight;
+                    index++;
+                }
+            }
+            // 트럭들이 한칸씩 전진 후에 1초 증가
+            answer++;
+
+            System.out.println(index + "      " + bridge + "    " + totWeight + "      " + bridge.size() + "    " + answer);
+
+            if(bridge.size() == 0) {
+                isProcess = false;
+            }
 
         }
 
@@ -89,4 +125,26 @@ public class Question2 {
 
         return answer;
     }
+}
+
+class Truck {
+    int weight;
+    int time;
+
+    public int getWeight() {
+        return weight;
+    }
+
+    public void setWeight(int weight) {
+        this.weight = weight;
+    }
+
+    public int getTime() {
+        return time;
+    }
+
+    public void setTime(int time) {
+        this.time = time;
+    }
+
 }

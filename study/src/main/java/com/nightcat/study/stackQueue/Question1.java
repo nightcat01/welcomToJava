@@ -86,7 +86,7 @@ public class Question1 {
             int height = (int) stack.pop(); // 스택에서 값 호출
             boolean isNotRecive = true; // 아무것도 받지 못한 신호일 경우 처리
 
-            // 배열은 길이보다 -1로 처리 되기 때문에 먼저 index--처리
+            // 배열은 길이보다 -1로 처리 되기 때문에 먼저 weight--처리
             index--;
 
             // 마지막부터 비교
